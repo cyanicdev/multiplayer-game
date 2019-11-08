@@ -5,6 +5,14 @@
 using asio::ip::udp;
 #define MAX_PACKET 4096
 
+
+std::string make_daytime_string()
+{
+	using namespace std; // For time_t, time and ctime;
+	time_t now = time(0);
+	return ctime(&now);
+}
+
 int runserver(char* port)
 {
 	try
@@ -67,13 +75,6 @@ int runclient(char* server, char* port)
 		return 1;
 	}
 	return 0;
-}
-
-std::string make_daytime_string()
-{
-	using namespace std; // For time_t, time and ctime;
-	time_t now = time(0);
-	return ctime(&now);
 }
 
 int main(int argc, char* argv[])
